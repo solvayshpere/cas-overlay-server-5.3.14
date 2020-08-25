@@ -1,0 +1,10 @@
+#  com.solvay.cas.config.MyAuthenticationConfiguration 自定义登陆认证
+# com.wangsaichao.cas.config.ShiroAuthenticationConfiguration 自定义Shiro认证
+# com.solvay.cas.config.ShiroAuthenticationConfiguration
+# com.solvay.cas.service.RoleService
+# com.solvay.cas.service.UserService
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.apereo.cas.config.CasEmbeddedContainerTomcatConfiguration,\
+  org.apereo.cas.config.CasEmbeddedContainerTomcatFiltersConfiguration
+
+
