@@ -1,9 +1,14 @@
 #  com.solvay.cas.config.MyAuthenticationConfiguration 自定义登陆认证
-# com.wangsaichao.cas.config.ShiroAuthenticationConfiguration 自定义Shiro认证
+# com.solvay.cas.config.ShiroAuthenticationConfiguration 自定义Shiro认证
 # com.solvay.cas.config.ShiroAuthenticationConfiguration
 # com.solvay.cas.service.RoleService
 # com.solvay.cas.service.UserService
+# com.solvay.cas.config.CasSwaggerConfiguration 自定义Swagger
+# com.solvay.cas.config.SpringConfig
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.solvay.cas.config.SpringConfig,\
+  com.solvay.cas.config.RememberMeCaptchaConfiguration,\
+  com.solvay.cas.config.CaptchaWebflowConfiguration,\
   org.apereo.cas.config.CasEmbeddedContainerTomcatConfiguration,\
   org.apereo.cas.config.CasEmbeddedContainerTomcatFiltersConfiguration
 

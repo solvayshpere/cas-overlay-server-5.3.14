@@ -125,7 +125,7 @@
                 <!--
                 ...Additional dependencies may be placed here...
                 -->
-                <!--<dependency>
+                <dependency>
                     <groupId>org.apereo.cas</groupId>
                     <artifactId>cas-server-support-jdbc</artifactId>
                     <version>${cas.version}</version>
@@ -134,12 +134,89 @@
                     <groupId>org.apereo.cas</groupId>
                     <artifactId>cas-server-support-jdbc-drivers</artifactId>
                     <version>${cas.version}</version>
-                </dependency>-->
+                </dependency>
+                <!--动态添加services-->
                 <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-support-jpa-service-registry</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-core-services-api</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-core-authentication-attributes</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-documentation-swagger</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+
+                <!-- 审计功能 -->
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-support-audit-jdbc</artifactId>
+                    <version>${cas.version}</version>
+                    <scope>runtime</scope>
+                </dependency>
+
+                <!-- 自定义登陆 -->
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-core-authentication</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-core-authentication-api</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-core-webflow</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apereo.cas</groupId>
+                    <artifactId>cas-server-core-webflow-api</artifactId>
+                    <version>${cas.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                    <version>2.5</version>
+                    <scope>provided</scope>
+                </dependency>
+
+                <!--验证码工具包 -->
+                <dependency>
+                    <groupId>com.github.penggle</groupId>
+                    <artifactId>kaptcha</artifactId>
+                    <version>2.3.2</version>
+                </dependency>
+
+                <!--<dependency>
+                    <groupId>io.springfox</groupId>
+                    <artifactId>springfox-swagger2</artifactId>
+                    <version>2.7.0</version>
+                </dependency>
+                <dependency>
+                    <groupId>io.springfox</groupId>
+                    <artifactId>springfox-swagger-ui</artifactId>
+                    <version>2.7.0</version>
+                </dependency>-->
+
+                <!--<dependency>
                     <groupId>org.apereo.cas</groupId>
                     <artifactId>cas-server-support-rest-authentication</artifactId>
                     <version>${cas.version}</version>
-                </dependency>
+                </dependency>-->
                 <!--<dependency>
                     <groupId>org.apereo.cas</groupId>
                     <artifactId>cas-server-core-authentication</artifactId>
