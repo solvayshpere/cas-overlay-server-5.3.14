@@ -6,6 +6,7 @@
 # com.solvay.cas.config.CasSwaggerConfiguration 自定义Swagger
 # com.solvay.cas.config.SpringConfig
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.solvay.cas.config.CasLogoutTriggerConfiguration,\
   com.solvay.cas.config.SpringConfig,\
   com.solvay.cas.config.RememberMeCaptchaConfiguration,\
   com.solvay.cas.config.CaptchaWebflowConfiguration,\
