@@ -2,6 +2,8 @@ package com.solvay.cas.adaptors.generic;
 
 import com.solvay.cas.CustomPasswordEncoder;
 import com.solvay.cas.domain.User;
+import com.solvay.cas.exception.CaptchaErrorException;
+import com.solvay.cas.exception.MyAccountNotFoundException;
 import com.solvay.cas.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apereo.cas.authentication.AuthenticationHandlerExecutionResult;
@@ -51,10 +53,10 @@ public class RememberMeUsernamePasswordCaptchaAuthenticationHandler extends Abst
         Object attribute = request.getSession().getAttribute("captcha");
         String realCaptcha = attribute == null ? null : attribute.toString();
         if(StringUtils.isBlank(requestCaptcha) || !requestCaptcha.toUpperCase().equals(realCaptcha)){
-            throw new FailedLoginException("验证码错误");
+            throw new CaptchaErrorException("验证码错误");
         }
 
-        // 获取请求来源URL
+        /*// 获取请求来源URL
         String referer = request.getHeader("referer");
         if(referer.indexOf("service=")>0){
             referer = referer.substring(referer.indexOf("service=")+8);
@@ -63,9 +65,9 @@ public class RememberMeUsernamePasswordCaptchaAuthenticationHandler extends Abst
         }
 
         RegisteredService service = findByServiceId(referer);
-        if (service != null){
+        if (service == null){
             throw new FailedLoginException("未查询到Service错误");
-        }
+        }*/
         //String appCode = service.getName();
         //userService.userLogin(myCredential.getUsername(),myCredential.getPassword(),appCode);
 
@@ -83,20 +85,19 @@ public class RememberMeUsernamePasswordCaptchaAuthenticationHandler extends Abst
 
         String sql = "SELECT * FROM user_info WHERE username = ?";
 
-        User user = (User) jdbcTemplate.queryForObject(sql, new Object[]{username}, new BeanPropertyRowMapper(User.class));
+        Map<String, Object> user = jdbcTemplate.queryForMap(sql, username);
 
-        System.out.println("database username : "+ user.getUsername());
-        System.out.println("database password : "+ user.getPassword());
+        System.out.println("database password : "+ user.get("password"));
 
         if (user == null) {
-            throw new AccountNotFoundException("用户名输入错误或用户名不存在");
+            throw new MyAccountNotFoundException("用户名输入错误或用户名不存在");
         }
 
         // 密码加密验证(MD5 32位 大写)
         CustomPasswordEncoder passwordEncoder = new CustomPasswordEncoder();
 
         //可以在这里直接对用户名校验,或者调用 CredentialsMatcher 校验
-        if (!passwordEncoder.matches(myCredential.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(myCredential.getPassword(), user.get("password").toString())) {
             throw new FailedLoginException("用户名或密码错误！");
         }
 
@@ -104,10 +105,10 @@ public class RememberMeUsernamePasswordCaptchaAuthenticationHandler extends Abst
         //if (!password.equals(user.getPassword())) {
         //    throw new IncorrectCredentialsException("用户名或密码错误！");
         //}
-        if ("1".equals(user.getState())) {
+        if ("1".equals(user.get("state").toString())) {
             throw new FailedLoginException("账号已被锁定,请联系管理员！");
         }
-        return createHandlerResult(credential, this.principalFactory.createPrincipal(username));
+        return createHandlerResult(credential, this.principalFactory.createPrincipal(username, user));
     }
 
     @Override

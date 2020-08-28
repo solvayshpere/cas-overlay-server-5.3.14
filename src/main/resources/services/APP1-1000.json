@@ -2,8 +2,11 @@
   "@class" : "org.apereo.cas.services.RegexRegisteredService",
   "serviceId" : "^(https|imaps|http)://app1.cas.com.*",
   "name" : "测试客户端app1",
-  "id" : 10000001,
+  "id" : 1000,
   "description" : "这是一个测试客户端app1的服务，所有的https或者http访问都允许通过",
-  "evaluationOrder" : 10000,
-  "theme" : "app1"
+  "evaluationOrder" : 10,
+  "theme" : "app1",
+  "attributeReleasePolicy" : {
+    "@class" : "org.apereo.cas.services.ReturnAllAttributeReleasePolicy"
+  }
 }

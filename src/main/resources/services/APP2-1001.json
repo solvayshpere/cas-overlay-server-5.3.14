@@ -2,8 +2,12 @@
   "@class" : "org.apereo.cas.services.RegexRegisteredService",
   "serviceId" : "^(https|imaps|http)://app2.cas.com.*",
   "name" : "测试客户端app2",
-  "id" : 10000002,
+  "id" : 1001,
   "description" : "这是一个测试客户端app2的服务，所有的https或者http访问都允许通过",
-  "evaluationOrder" : 10001,
-  "theme" : "app2"
+  "evaluationOrder" : 11,
+  "theme" : "app2",
+  "attributeReleasePolicy" : {
+    "@class" : "org.apereo.cas.services.ReturnAllowedAttributeReleasePolicy",
+    "allowedAttributes" : [ "java.util.ArrayList", [ "name", "id_card_num" ] ]
+  }
 }
