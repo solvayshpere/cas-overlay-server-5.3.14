@@ -51,6 +51,7 @@ public class ServiceController {
             service.setName("login");
             //这个是为了单点登出而作用的
             service.setLogoutUrl(new URL("http://" + serviceId));
+//            service.setLogoutType(RegisteredService.LogoutType.BACK_CHANNEL);
             servicesManager.save(service);
             //执行load让他生效
             servicesManager.load();
